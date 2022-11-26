@@ -1,0 +1,553 @@
+@import "nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+
+// === MIXINS ===
+@mixin pt {
+  font-family: "Roboto", sans-serif;
+}
+
+// === / MIXINS ===
+
+// ===  Functions ===
+@function strip-unit($num) {
+  $one-unit: ($num * 0) + 1;
+
+  @return calc($num / $one-unit);
+}
+
+@function rem($num) {
+  @return (calc(strip-unit($num) / 16)) * 1rem;
+}
+
+// === / Functions ===
+
+// === VARIABLES ===
+$breakpoint-sm-min: 500px;
+$breakpoint-xs-max: $breakpoint-sm-min - 1px;
+$breakpoint-md-min: 850px;
+$breakpoint-sm-max: $breakpoint-md-min - 1px;
+$breakpoint-lg-min: 1050px;
+$breakpoint-md-max: $breakpoint-lg-min - 1px;
+$breakpoint-xl-min: 1450px;
+$breakpoint-lg-max: $breakpoint-xl-min - 1px;
+
+// common base
+$base: rem(4px);
+
+// font waights
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+
+// font sizes common
+$fz-xxs: rem(14px);
+$fz-xs: rem(16px);
+$fz-s: rem(20px);
+$fz-m: rem(26px);
+$fz-l: rem(36px);
+$fz-xl: rem(56px);
+
+// font sizes main dates
+$fz-xs-date: rem(56px);
+$fz-s-date: rem(80px);
+$fz-m-date: rem(120px);
+$fz-l-date: rem(150px);
+$fz-xl-date: rem(200px);
+
+// Primary-colors
+$primary-color-50: #42567a1a;
+$primary-color-100: #42567a33;
+$primary-color-200: #42567a80;
+$primary-color-300: #42567a;
+
+// Other colors
+$secondary-color: #3877ee;
+$accent-light-color: #ef5da8;
+$accent-dark-color: #5d5fef;
+$decorate-color: #c7cdd9;
+$background-color: #e5e5e5;
+
+// === / VARIABLES ===
+
+// === Common ===
+body {
+  background-color: $background-color;
+}
+
+.wrapper {
+  @include pt;
+
+  position: relative;
+  max-width: $base * 360;
+  min-height: 100vh;
+  padding: $base * 42 0 $base * 26 0;
+  margin: 0 auto;
+  border: 1px solid $primary-color-50;
+
+  @media (max-width: $breakpoint-lg-max) {
+    max-width: $base * 250;
+  }
+
+  @media (max-width: $breakpoint-md-max) {
+    max-width: $base * 200;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    max-width: $base * 150;
+    padding: $base * 15 0 $base * 26 0;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 1px;
+    height: 100%;
+    content: "";
+    background: $primary-color-100;
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: none;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: $base * 120;
+    left: 0;
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 1px;
+    content: "";
+    background: $primary-color-100;
+
+    @media (max-width: $breakpoint-lg-min) {
+      top: $base * 131;
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: none;
+    }
+  }
+}
+
+// === / Common ===
+
+// === Title ===
+.title {
+  position: relative;
+  padding-left: $base * 19;
+  font-size: $fz-xl;
+  font-weight: $fw-bold;
+  line-height: 1.2;
+  color: $primary-color-300;
+
+  @media (max-width: $breakpoint-lg-max) {
+    font-size: $fz-l;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    padding-left: $base * 5;
+    font-size: $fz-m;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: $fz-s;
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: $base;
+    height: 100%;
+    content: "";
+    background: linear-gradient(
+      to bottom,
+      $secondary-color 0%,
+      $accent-light-color 100%
+    );
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: none;
+    }
+  }
+}
+
+// === / Title ===
+
+// === Dates ===
+.dates {
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  max-width: $base * 243;
+  margin: $base * 16 0 0 $base * 54;
+  font-size: $fz-xl-date;
+  font-weight: $fw-bold;
+  line-height: 0, 8;
+
+  @media (max-width: $breakpoint-lg-max) {
+    max-width: $base * 187;
+    margin: $base * 35 0 0 $base * 32;
+    font-size: $fz-l-date;
+  }
+
+  @media (max-width: $breakpoint-lg-min) {
+    max-width: $base * 152;
+    margin: $base * 50 0 0 $base * 24;
+    font-size: $fz-m-date;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    position: relative;
+    max-width: $base * 120;
+    padding: 0 $base * 5 0;
+    margin: $base * 14 auto $base * 20;
+    font-size: $fz-s-date;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    gap: $base * 7;
+    justify-content: center;
+    font-size: $fz-xs-date;
+  }
+
+  &::after {
+    position: absolute;
+    bottom: -$base * 15;
+    left: 50%;
+    display: none;
+    width: $base * 70;
+    height: 1px;
+    content: "";
+    background-color: $decorate-color;
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: block;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__left {
+    color: $accent-dark-color;
+  }
+
+  &__right {
+    color: $accent-light-color;
+  }
+}
+
+// === / Dates ===
+
+// === Circle ===
+.circle {
+  position: absolute;
+  top: $base * 52;
+  left: $base * 112;
+  display: flex;
+  justify-content: center;
+  width: $base * 135;
+  height: $base * 135;
+  border: 1px solid $primary-color-100;
+  border-radius: 50%;
+  transition: 0.5s;
+
+  @media (max-width: $breakpoint-lg-max) {
+    left: $base * 57;
+  }
+
+  @media (max-width: $breakpoint-lg-min) {
+    top: $base * 64;
+    left: $base * 32;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    display: none;
+  }
+
+  &__category {
+    position: absolute;
+    top: $base * 52;
+    right: $base * 120;
+    font-size: $fz-s;
+    font-weight: $fw-bold;
+    line-height: 1.5;
+    color: $primary-color-300;
+    transition: 0.5s;
+    transform: translateX(100%);
+
+    @media (max-width: $breakpoint-lg-max) {
+      right: $base * 65;
+    }
+
+    @media (max-width: $breakpoint-lg-min) {
+      top: $base * 64;
+      right: $base * 40;
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+      top: $base * 70;
+      right: auto;
+      left: $base * 5;
+      font-size: $fz-xs;
+      transform: translateX(0);
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+      top: $base * 61;
+    }
+  }
+
+  &__item-container {
+    position: absolute;
+    height: 100%;
+    transition: 0.5s;
+  }
+
+  &__item {
+    position: absolute;
+    top: -$base;
+    left: -$base;
+    z-index: 10;
+    width: $base * 2;
+    height: $base * 2;
+    font-size: 1px;
+    font-weight: $fw-regular;
+    line-height: 2.7;
+    color: transparent;
+    text-align: center;
+    cursor: pointer;
+    background-color: $primary-color-300;
+    border-radius: 50%;
+    transition: 0.2s;
+
+    &.active,
+    &:active,
+    &:hover {
+      top: -$base * 7;
+      left: -$base * 7;
+      width: $base * 14;
+      height: $base * 14;
+      font-size: $fz-s;
+      color: $primary-color-300;
+      background-color: $background-color;
+      border: 1px solid $primary-color-100;
+    }
+  }
+}
+
+// === / Circle ===
+
+// === Headings ===
+.headings {
+  margin: $base * 34 0 0 $base * 20;
+
+  @media (max-width: $breakpoint-lg-min) {
+    margin: $base * 42 0 0 $base * 20;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    position: absolute;
+    bottom: $base * 10;
+    left: $base * 6;
+    margin: 0;
+  }
+
+  &__breadcrumbs {
+    font-size: $fz-xxs;
+    font-weight: $fw-regular;
+    line-height: 1.2;
+    color: $primary-color-300;
+  }
+
+  &__buttons-group {
+    display: flex;
+    gap: $base * 5;
+    margin-top: $base * 5;
+
+    @media (max-width: $breakpoint-xs-max) {
+      gap: $base * 4;
+      margin-top: $base * 3;
+    }
+  }
+
+  &__button {
+    width: $base * 12;
+    height: $base * 12;
+    text-align: center;
+    border: 1px solid $primary-color-100;
+    border-radius: 50%;
+    opacity: 0.5;
+
+    &.left {
+      background: url("../img/icons/icon-slider-categories.svg") center
+        no-repeat;
+    }
+
+    &.right {
+      background: url("../img/icons/icon-slider-categories.svg") center
+        no-repeat;
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+      width: $base * 7;
+      height: $base * 7;
+    }
+
+    &:active,
+    &:hover {
+      border: 1px solid $primary-color-200;
+      opacity: 1;
+    }
+  }
+
+  &__category {
+    font-size: $fz-s;
+    font-weight: $fw-bold;
+    line-height: 1.5;
+    color: $primary-color-300;
+    transition: 0.5s;
+  }
+}
+
+// === / Headings ===
+
+// === Slider ===
+.slider {
+  display: flex;
+
+  &__buttons {
+    position: relative;
+
+    @media (max-width: $breakpoint-sm-max) {
+      margin: 0 0 $base * 20;
+    }
+  }
+
+  &-wrapper {
+    position: relative;
+    margin: $base * 14 $base * 20 0;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-sm-max) {
+      margin: $base * 14 $base * 5 0;
+    }
+  }
+
+  &__item {
+    flex: 0 0 $base * 85;
+
+    @media (max-width: $breakpoint-sm-max) {
+      flex: 0 0 $base * 42;
+    }
+
+    & + & {
+      margin-left: $base * 20;
+
+      @media (max-width: $breakpoint-sm-max) {
+        margin-left: $base * 7;
+      }
+    }
+  }
+
+  &__item-title {
+    font-size: $fz-m;
+    font-weight: $fw-bold;
+    line-height: 1.2;
+    color: $secondary-color;
+
+    @media (max-width: $breakpoint-sm-max) {
+      font-size: $fz-s;
+    }
+
+    @media (max-width: $breakpoint-xs-max) {
+      font-size: $fz-xs;
+    }
+  }
+
+  &__item-text {
+    margin-top: $base * 2;
+    font-size: $fz-s;
+    font-weight: $fw-regular;
+    line-height: 1.2;
+    color: $primary-color-300;
+
+    @media (max-width: $breakpoint-xs-max) {
+      font-size: $fz-xxs;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    display: block;
+    width: $base * 10;
+    height: $base * 10;
+    border: 1px solid $primary-color-100;
+    border-radius: 50%;
+    opacity: 0.5;
+    transform: translateY(-50%);
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: none;
+    }
+
+    &:active,
+    &:hover {
+      border: 1px solid $primary-color-200;
+      opacity: 1;
+    }
+
+    &.right {
+      left: $base * 5;
+      background: url("../img/icons/icon-slider-descriptions.svg") center
+        no-repeat;
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    &.left {
+      right: $base * 5;
+      background: url("../img/icons/icon-slider-descriptions.svg") center
+        no-repeat;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: $base * 13;
+    left: 50%;
+    display: none;
+    gap: $base * 3;
+    justify-content: center;
+    margin: 0 auto;
+    transform: translateX(-50%);
+
+    &-item {
+      width: $base * 2;
+      height: $base * 2;
+      cursor: pointer;
+      background-color: $primary-color-300;
+      border-radius: 50%;
+      opacity: 0.4;
+
+      &:hover,
+      &:active,
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+      display: flex;
+    }
+  }
+}
+
+// === / Slider ===
