@@ -1,3 +1,21 @@
+# Dates slider for Hammer Systems company
+
+* From two to six categories (time periods) each containing several events (dates).
+
+* When switching time periods, the corresponding numbers change and a new slider is shown below them, which contains detailed information on key events in the active time period.
+
+* Interactive circle-slider with the ability to click on interactive points (categories of events).
+
+* Created with React.js, Typescript, SCSS, Swiper for React. Bundled with Webpack.
+
+[Link to deployed application](https://dates-7de9d.web.app/)
+
+## Screenshot
+![Screenshot-app](/public/Screenshot-app.jpg)
+
+*PC and mobile versions have been implemented.*
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
