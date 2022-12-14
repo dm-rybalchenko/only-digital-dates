@@ -1,4 +1,4 @@
-# Dates slider for Hammer Systems company
+# Dates slider for Only Digital company
 
 * From two to six categories (time periods) each containing several events (dates).
 
